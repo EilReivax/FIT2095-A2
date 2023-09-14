@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+    <head>
+        <link href="/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <main>
+            <div class="album py-5">
+                <div class="container">
+                    <h3 class="my-2">Add New Event Form</h3>
+                    <div class="row row-cols-1 row-cols-sm-2 g-3">
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <form action="/event/michael/add" method="POST">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">* Event Name</label>
+                                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter event name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="description" class="form-label">Description</label>
+                                            <input type="text" name="description" class="form-control" id="description" placeholder="Enter description">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="image" class="form-label">Image</label>
+                                            <input type="text" name="image" class="form-control" id="image" placeholder="Enter static resource path">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="startDate" class="form-label">* Start Date Time</label>
+                                            <input type="datetime-local" name="startDate" class="form-control" id="startDate" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="duration" class="form-label">* Duration In Minutes</label>
+                                            <input type="number" name="duration" class="form-control" id="duration" placeholder="Event duration in minutes" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="isActive" class="form-check-label">Is Active</label>
+                                            <input type="checkbox" name="isActive" class="form-check-input" id="isActive">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="capacity" class="form-label">Capacity</label>
+                                            <input type="number" name="capacity" class="form-control" id="capacity" placeholder="Event capacity">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="availability" class="form-label">Tickets Available</label>
+                                            <input type="number" name="availability" class="form-control" id="availability" placeholder="Tickets Available (Optional)">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="categoryId" class="form-label">* Category ID</label>
+                                            <input type="text" name="categoryId" class="form-control" id="categoryId" placeholder="Category ID" required>
+                                        </div>
+                                        <button class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

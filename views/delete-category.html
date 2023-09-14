@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+    <head>
+        <link href="/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="album py-5">
+            <div class="container">
+                <h3 class="my-2">Delete Event Category</h3>
+                <div class="row row-cols-1 row-cols-sm-2">
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <form action="/delete-event-category" method="POST">
+                                    <div class="mb-3">
+                                        <label for="id" class="form-label">Category ID</label>
+                                        <input type="text" name="id" class="form-control" id="id" placeholder="Enter category ID"/>
+                                    </div>
+                                    <button class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

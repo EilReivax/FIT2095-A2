@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+    <head>
+        <link href="/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="album py-5">
+            <div class="container">
+                <div class="my-2">
+                    <div class="row row-cols-1 row-cols-sm-2 g-3">
+                        <div class="col">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Start</th>
+                                        <th scope="col">End</th>
+                                        <th scope="col">Duration</th>
+                                        <th scope="col">Is Active</th>
+                                        <th scope="col">Capacity</th>
+                                        <th scope="col">Tickets Available</th>
+                                        <th scope="col">Categoy Id</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (let i = 0; i < events.length; i++){ %>
+                                        <tr>
+                                            <th scope="row"><%= events[i].id %></th>
+                                            <td><%= events[i].name %></td>
+                                            <td><%= events[i].startDate.toLocaleString() %></td>
+                                            <td><%= events[i].end() %></td>
+                                            <td><%= Math.round(events[i].duration / 6) / 10 + " Hour(s)"%></td>
+                                            <td><%= events[i].isActive %></td>
+                                            <td><%= events[i].capacity %></td>
+                                            <td><%= events[i].availability %></td>
+                                            <td><%= events[i].categoryId %></td>
+                                            <td><a href="<%='/event/32528558/view-event-details/' + i%>"><button class="btn btn-primary">View</button></a></td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

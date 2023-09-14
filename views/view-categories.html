@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+    <head>
+        <link href="/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="album py-5">
+            <div class="container">
+                <div class="my-2">
+                    <div class="row row-cols-1 row-cols-sm-2 g-3">
+                        <div class="col">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col"></th>
+                                        <th scope="col">Created Date</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (let i=0; i <records.length; i++){ %>
+                                        <tr>
+                                            <th scope="row"><%= records[i].id %></th>
+                                            <td><%= records[i].name %></td>
+                                            <td><%= records[i].description %></td>
+                                            <td><%= records[i].image %></td>
+                                            <td><img src="<%= records[i].displayImage %>"></td>
+                                            <td><%= records[i].createdAt %></td>
+                                            <td><a href="<%='/category/michael/view-details/' + records[i].id%>"><button class="btn btn-primary">View</button></a></td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+    <head>
+        <link href="/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div>
+            <img src="/events.jpg">
+        </div>
+        <div>
+            <h5>Event ID</h3>
+            <p><%= event.id %></p>
+            <h5>Name</h3>
+            <p><%= event.name %></p>
+            <h5>Description</h3>
+            <p><%= event.description %></p>
+            <h5>Start Date Time</h3>
+            <p><%= event.startDate %></p>
+            <h5>End Date Time</h3>
+            <p><%= event.end() %></p>
+            <h5>Duration</h3>
+            <p><%= event.duration %></p>
+            <h5>Is Active</h3>
+            <p><%= event.isActive %></p>
+            <h5>Capacity</h3>
+            <p><%= event.capacity %></p>
+            <h5>Tickets Available</h3>
+            <p><%= event.availability %></p>
+            <h5>Category ID</h3>
+            <p><%= event.categoryId %></p>
+        </div>
+    </body>
+</html>
