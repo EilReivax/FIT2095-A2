@@ -25,8 +25,17 @@ const eventSchema = new mongoose.Schema({
     capacity: {
         type: Number,
         default: 1000,
-        min: 10,
-        max: 2000
+        validate: {
+            validator: function (value) {
+                if (value <= 10 && value >= 2000) {
+                    return true;
+                }
+                else {
+                    return false
+                }
+            },
+            message: 'Capacity must be between 10 and 2000'
+        }
     },
     availability: {
         type: Number
