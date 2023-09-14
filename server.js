@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const category = require('.routers/category');
-const event = require('.routers/event');
+// const category = require('.routers/category');
+const event = require('.routers/event-api');
 
 const app = express();
 
