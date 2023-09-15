@@ -10,7 +10,10 @@ const categorySchema = new mongoose.Schema({
         required: true
     },
     description: String,
-    image: String,
+    image: {
+        type: String,
+        default: '/no-image.jpg'
+    },
     date: {
         type: Date,
         default: Date.now
