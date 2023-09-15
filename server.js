@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 // const category = require('.routers/category');
 // const event = require('./routes/event-routes');
 const categories = require('./routes/category-routes');
-const { create } = require('./models/category');
 
 const app = express();
 
@@ -49,3 +48,4 @@ app.get('/category/32528558/delete', function(req,res){
 app.post('/add-category-post', categories.webCreateOne);
 app.get('/category/32528558/view-all', categories.webGetAll);
 app.post('/delete-event-category', categories.webDeleteOne);
+app.get('/category/32528558/search-category', categories.webSearch);

@@ -43,5 +43,12 @@ module.exports = {
     webDeleteOne: async function(req, res){
         let obj = await Category.deleteOne({categoryId: req.body.categoryId});
         res.redirect('category/32528558/view-all');
+    },
+
+    webSearch: async function(req, res){
+        let keyword = req.query.keyword;
+
+        let categories = await Category.find({description: {$regex: keyword, "$options": "i"}});
+        res.render('search-category', {records: categories});
     }
 }
