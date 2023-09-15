@@ -1,61 +1,72 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
-    <head>
-        <link href="/bootstrap.min.css" rel="stylesheet"/>
-        <style>
-            .header {
-                padding: 60px;
-                text-align: center;
-                background: #e8e8e3;
-                color: black;
-                font-size: 30px;
-            }
 
-            .center {
-                width: 50%;
-                margin: auto;
-                padding: 10px;
-            }
+<head>
+    <link href="/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .header {
+            padding: 60px;
+            text-align: center;
+            background: #e8e8e3;
+            color: black;
+            font-size: 30px;
+        }
 
-            h3 , p{
-                text-align: center;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="header">
-            <h1><b>Event Management App</b></h1>
-        </div>
-        <main>
-            <div class="album py-5 center">
-                <div class="container">
-                    <h3 class="my-2">Add Category</h3>
-                    <p>Fill in category details & click submit</p>
-                    <div class="center">
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <div class="card-body">
-                                    <form action="/add-category-post" method="POST">
-                                        <div class="mb-3">
-                                            <label for="name" class="form-label">Category Name</label>
-                                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter category name" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="description" class="form-label">Description of Category</label>
-                                            <input type="text" name="description" class="form-control" id="description" placeholder="Enter category description">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="image" class="form-label">Image</label>
-                                            <input type="text" name="image" class="form-control" id="image" placeholder="Enter category image">
-                                        </div>
-                                        <button class="btn btn-primary">Submit</button>
-                                    </form>
+        .center {
+            width: 50%;
+            margin: auto;
+            padding: 10px;
+        }
+
+        .form75{
+            width: 75%;
+            margin: auto;
+            padding: 10px;
+        }
+
+        h3, p {
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1><b>Event Management App</b></h1>
+    </div>
+    <main>
+        <div class="center">
+            <h3 class="my-2">Add Category</h3>
+            <p>Fill in category details & click submit</p>
+            <div class="form75">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <form action="/add-category-post" method="POST">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Category Name</label>
+                                    <input type="text" name="name" class="form-control" id="name"
+                                        placeholder="Enter category name" required>
                                 </div>
-                            </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Description of Category</label>
+                                    <input type="text" name="description" class="form-control" id="description"
+                                        placeholder="Enter category description">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Image</label>
+                                    <input type="text" name="image" class="form-control" id="image"
+                                        placeholder="Enter category image">
+                                </div>
+                                <button class="btn btn-primary">Submit</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-    </body>
+        </div>
+    </main>
+</body>
+
 </html>
