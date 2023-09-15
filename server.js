@@ -32,10 +32,10 @@ app.get('/', function (req, res) {
 // app.delete('/event', event.deleteOne);
 // app.put('/event', event.updateOne);
 
-app.get('/categories', categories.getAll);
-app.post('/categories', categories.createOne);
-app.delete('/categories', categories.deleteOne);
-app.put('/categories', categories.updateOne);
+app.get('/api/v1/category/32528558/list', categories.getAll);
+app.post('/api/v1/category/32528558/add', categories.createOne);
+app.delete('/api/v1/category/32528558/delete', categories.deleteOne);
+app.put('/api/v1/category/32528558/edit', categories.updateOne);
 
 app.get('/category/32528558/add', function (req,res){
     res.render("add-category");
