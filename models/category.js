@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const categorySchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     categoryId: {
         type: String,
         default: generateID()
@@ -16,13 +15,13 @@ const categorySchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    eventList: [{
-        type: mongoose.Schema.ObjectId,
-        ref: 'Event'
-    }]
+    // eventList: [{
+    //     type: mongoose.Schema.ObjectId,
+    //     ref: 'Event'
+    // }]
 })
 
-module.exports("Category", categorySchema);
+module.exports = mongoose.model("Category", categorySchema);
 
 function generateID(){
     let letter1 = getRandomLetter();
