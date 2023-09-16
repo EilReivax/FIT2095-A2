@@ -7,15 +7,29 @@ module.exports = {
     createOne: async function (req, res) {
         let name = req.body.name;
         let description = req.body.description;
-        let date = req.body.capacity;
+        let date = req.body.date;
         let duration = req.body.duration;
         let isActive = req.body.isActive;
         let image = req.body.image;
         let capacity = req.body.capacity;
         let availability = req.body.availability;
-        let categoryList = req.body.categoryList.split(',');
+        let categoryList = req.body.categoryList.split(',');;
 
-        let newEvent = new Event(name, description, date, duration, isActive, image, capacity, availability, categoryList);
+        if (!capacity) {
+            capacity = 1000;
+        }
+
+        let newEvent = new Event({
+            name: name,
+            description: description,
+            date: date,
+            duration: duration,
+            isActive: isActive,
+            image: image,
+            capacity: capacity,
+            availability: availability,
+            categoryList: categoryList
+        });
         await newEvent.save();
         res.json(newEvent.eventId);
     },
@@ -49,15 +63,34 @@ module.exports = {
     webCreateOne: async function (req, res) {        
         let name = req.body.name;
         let description = req.body.description;
-        let date = req.body.capacity;
+        let date = req.body.date;
         let duration = req.body.duration;
         let isActive = req.body.isActive;
         let image = req.body.image;
         let capacity = req.body.capacity;
         let availability = req.body.availability;
-        let categoryList = req.body.categoryList.split(',');
+        let categories = req.body.categories.split(',');
 
-        let newEvent = new Event(name, description, date, duration, isActive, image, capacity, availability, categoryList);
+        if (!capacity) {
+            capacity = 1000;
+        }
+
+        let categoryList = [];
+        for (let i = 0; i < categories.length; i++) {
+            categoryList.push(Category.find({categoryId: categories[i]})._id);
+        }
+
+        let newEvent = new Event({
+            name: name,
+            description: description,
+            date: date,
+            duration: duration,
+            isActive: isActive,
+            image: image,
+            capacity: capacity,
+            availability: availability,
+            categoryList: categoryList
+        });
         await newEvent.save();
         res.redirect("/event/michael/view-all");
     },
