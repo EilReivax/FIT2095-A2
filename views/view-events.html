@@ -70,7 +70,7 @@
                                             <%= events[i].availability %>
                                         </td>
                                         <% let categories="" %>
-                                        <% for (let j=0; j < events[i].categoryList.length; j++) { %>
+                                        <% for (let j = 0; j < events[i].categoryList.length; j++) { %>
                                             <% if (j == events[i].categoryList.length - 1) { %>
                                                 <% categories += `${events[i].categoryList[j].categoryId}` %>
                                             <% } else { %>
@@ -80,8 +80,9 @@
                                         <td>
                                             <%= categories %>
                                         </td>
-                                        <td><a href="<%='/event/32528558/view-event-details/' + i%>"><button
-                                                    class="btn btn-primary">View</button></a></td>
+                                        <td>
+                                            <a href="<%= `/event/32528558/view-event-details/${events[i].eventId}` %>"><button class="btn btn-primary">View</button></a>
+                                        </td>
                                     </tr>
                                 <% } %>
                             </tbody>
