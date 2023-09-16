@@ -120,7 +120,10 @@ module.exports = {
         res.render("view-events", {events: events});
     },
     webGetOne: async function (req, res) {
-        
+        let event = await Event.findOne({eventId: req.params.eventId})
+            .populate('categoryList')
+            .exec();
+        res.render("view-event-details", {event: event});
     },
     webGetSoldout: async function (req, res) {        
         let events = await Event.find({availability: 0})
