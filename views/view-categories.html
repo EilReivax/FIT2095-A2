@@ -39,7 +39,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% for (let i=0; i <records.length; i++){ %>
+                            <% for (let i = 0; i < records.length; i++) { %>
                                 <tr>
                                     <th scope="row">
                                         <%= records[i].categoryId %>
@@ -57,10 +57,11 @@
                                     <td>
                                         <%= records[i].date %>
                                     </td>
-                                    <td><a href="<%='/category/michael/view-details/' + records[i].id%>"><button
-                                                class="btn btn-primary">View</button></a></td>
+                                    <td>
+                                        <a href= "<%=`/category/michael/view-details/${records[i].categoryId}` %>"><button class="btn btn-primary">View</button></a>
+                                    </td>
                                 </tr>
-                                <% } %>
+                            <% } %>
                         </tbody>
                     </table>
                 </div>

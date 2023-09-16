@@ -12,8 +12,8 @@ module.exports = {
 
     getAll: async function(req, res){
         let categories = await Category.find()
-            // .populate('eventList')
-            // .exec();
+            .populate('eventList')
+            .exec();
             res.json(categories);
     },
 
@@ -37,14 +37,21 @@ module.exports = {
 
     webGetAll: async function(req, res){
         let categories = await Category.find()
-            // .populate('eventList')
-            // .exec();
+            .populate('eventList')
+            .exec();
             res.render("view-categories", {records: categories});
     },
 
     webGetOne: async function(req, res){
-        let category = await Category.findOne({categoryId: req.params.categoryId});
-        res.render("view-category-details", {category: category});
+        let category = await Category.findOne({categoryId: req.params.categoryId})
+            .populate('eventList')
+            .exec();
+
+        let events = await Event.find({categoryList: category._id})
+            .populate('categoryList')
+            .exec();
+        
+        res.render("view-category-details", {category: category, events: events});
     },
 
     webDeleteOne: async function(req, res){
