@@ -27,9 +27,9 @@
                                 <tbody>
                                     <% for (let i = 0; i < events.length; i++){ %>
                                         <tr>
-                                            <th scope="row"><%= events[i].id %></th>
+                                            <th scope="row"><%= events[i].eventId %></th>
                                             <td><%= events[i].name %></td>
-                                            <td><%= events[i].startDate.toLocaleString() %></td>
+                                            <td><%= events[i].date.toLocaleString() %></td>
                                             <td><%= events[i].end() %></td>
                                             <td><%= Math.round(events[i].duration / 6) / 10 + " Hour(s)"%></td>
                                             <td><%= events[i].isActive %></td>
