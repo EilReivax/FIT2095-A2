@@ -4,9 +4,13 @@ const mongoose = require('mongoose');
 const Event = require('./routes/event-routes');
 const Category = require('./routes/category-routes');
 
+const PORT_NUMBER = 8080;
+
 const app = express();
 
-app.listen(8080);
+app.listen(PORT_NUMBER, function() {
+    console.log(`listening on port ${PORT_NUMBER}`);
+});
 
 app.use(express.static("node_modules/bootstrap/dist/css"));
 app.use(express.static("images"));
