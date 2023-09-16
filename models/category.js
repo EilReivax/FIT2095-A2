@@ -18,10 +18,10 @@ const categorySchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    // eventList: [{
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: 'Event'
-    // }]
+    eventList: [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'Event'
+    }]
 })
 
 module.exports = mongoose.model("Category", categorySchema);
