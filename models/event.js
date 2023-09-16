@@ -60,6 +60,10 @@ function getRandomLetter(){
     return alphabet[randInt];
 }
 
+function getRandomNum(max){
+    return Math.floor(Math.random() * max);
+}
+
 function generateId() {
     let letter1 = getRandomLetter();
     let letter2 = getRandomLetter();

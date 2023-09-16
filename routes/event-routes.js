@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const Category = require('./models/category');
-const Event = require('./models/event');
+const Category = require('../models/category');
+const Event = require('../models/event');
 
 module.exports = {
     createOne: async function (req, res) {

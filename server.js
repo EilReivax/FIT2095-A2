@@ -48,7 +48,7 @@ app.delete('/api/v1/category/32528558/delete', Category.deleteOne);
 app.get('/event/michael/add', function (req, res) {
     res.render('add-event');
 });
-app.post('/add-event-post', Event.webCreateOne);
+app.post('/event/michael/add', Event.webCreateOne);
 app.get('/event/michael/view-all', Event.webGetAll);
 app.get('/event/michael/view-soldout', Event.webGetSoldout);
 app.get('/category/michael/view-details/:id', Category.webGetOne);

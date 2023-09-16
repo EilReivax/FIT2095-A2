@@ -37,8 +37,8 @@ module.exports = {
 
     webGetAll: async function(req, res){
         let categories = await Category.find()
-            .populate('eventList')
-            .exec();
+            // .populate('eventList')
+            // .exec();
             res.render("view-categories", {records: categories});
     },
 
