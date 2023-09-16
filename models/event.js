@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     eventId: {
         type: String,
         default: generateId()
@@ -28,10 +27,9 @@ const eventSchema = new mongoose.Schema({
     },
     capacity: {
         type: Number,
-        default: 1000,
         validate: {
             validator: function (value) {
-                if (value <= 10 && value >= 2000) {
+                if (value >= 10 && value <= 2000) {
                     return true;
                 }
                 else {
@@ -49,6 +47,11 @@ const eventSchema = new mongoose.Schema({
         ref: 'Category'
     }],
 });
+
+eventSchema.methods.end = function () {
+    let endDate = new Date(this.date.getTime() + this.duration * 60000);
+    return endDate.toLocaleString();
+}
 
 function getRandomLetter(){
     alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
