@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Event = require('../models/event');
 const Category = require('../models/category');
 
 module.exports = {
@@ -16,15 +17,16 @@ module.exports = {
             res.json(categories);
     },
 
+    updateOne: async function(req, res){
+        let obj = await Category.findOneAndUpdate({categoryId: req.body.categoryId}, {name: req.body.name, description: req.body.description});
+        res.json(obj);
+    },
+
     deleteOne: async function(req, res){
         let obj = await Category.deleteOne({categoryId: req.body.categoryId});
         res.json(obj);
     },
 
-    updateOne: async function(req, res){
-        let obj = await Category.findOneAndUpdate({categoryId: req.body.categoryId}, {name: req.body.name, description: req.body.description});
-        res.json(obj);
-    },
 
     webCreateOne: async function(req, res){
         let categoryDetails = req.body;
@@ -35,9 +37,14 @@ module.exports = {
 
     webGetAll: async function(req, res){
         let categories = await Category.find()
-            // .populate('eventList')
-            // .exec();
+            .populate('eventList')
+            .exec();
             res.render("view-categories", {records: categories});
+    },
+
+    webGetOne: async function(req, res){
+        let category = await Category.findOne({categoryId: req.params.categoryId});
+        res.render("view-category-details", {category: category});
     },
 
     webDeleteOne: async function(req, res){
