@@ -1,9 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-// const category = require('.routers/category');
-// const event = require('./routes/event-routes');
-const categories = require('./routes/category-routes');
+const Event = require('./routes/event-routes');
+const Category = require('./routes/category-routes');
 
 const app = express();
 
@@ -27,25 +26,36 @@ app.get('/', function (req, res) {
     res.render("index");
 })
 
-// app.post('/event', event.createOne);
-// app.get('/event', event.getAll);
-// app.delete('/event', event.deleteOne);
-// app.put('/event', event.updateOne);
-
-app.get('/api/v1/category/32528558/list', categories.getAll);
-app.post('/api/v1/category/32528558/add', categories.createOne);
-app.delete('/api/v1/category/32528558/delete', categories.deleteOne);
-app.put('/api/v1/category/32528558/edit', categories.updateOne);
-
-app.get('/category/32528558/add', function (req,res){
+// Category HTML endpoints
+app.get('/category/32528558/add', function (req, res) {
     res.render("add-category");
 })
-
-app.get('/category/32528558/delete', function(req,res){
+app.post('/add-category-post', Category.webCreateOne);
+app.get('/category/32528558/delete', function (req, res) {
     res.render('delete-category');
 })
+app.post('/delete-event-category', Category.webDeleteOne);
+app.get('/category/32528558/view-all', Category.webGetAll);
+app.get('/category/32528558/search-category', Category.webSearch);
 
-app.post('/add-category-post', categories.webCreateOne);
-app.get('/category/32528558/view-all', categories.webGetAll);
-app.post('/delete-event-category', categories.webDeleteOne);
-app.get('/category/32528558/search-category', categories.webSearch);
+// Category API endpoints
+app.post('/api/v1/category/32528558/add', Category.createOne);
+app.get('/api/v1/category/32528558/view-all', Category.getAll);
+app.put('/api/v1/category/32528558/edit', Category.updateOne);
+app.delete('/api/v1/category/32528558/delete', Category.deleteOne);
+
+// Event endpoints
+app.get('/event/michael/add', function (req, res) {
+    res.render('add-event');
+});
+app.post('/add-event-post', Event.webCreateOne);
+app.get('/event/michael/view-all', Event.webGetAll);
+app.get('/event/michael/view-soldout', Event.webGetSoldout);
+app.get('/category/michael/view-details/:id', Category.webGetOne);
+app.get('/event/michael/delete', Event.webDeleteOne);
+
+// Event API endpoints
+app.post('/api/v1/event/michael/add', Event.createOne);
+app.get('/api/v1/event/michael/view-all', Event.getAll);
+app.put('/api/v1/event/michael/edit', Event.updateOne);
+app.delete('/api/v1/event/michael/delete', Event.deleteOne);
