@@ -26,6 +26,7 @@ async function connect() {
 }
 connect().catch(err => console.log(err));
 
+// Home page
 app.get('/', function (req, res) {
     res.render("index");
 })
@@ -48,7 +49,7 @@ app.get('/api/v1/category/32528558/view-all', Category.getAll);
 app.put('/api/v1/category/32528558/edit', Category.updateOne);
 app.delete('/api/v1/category/32528558/delete', Category.deleteOne);
 
-// Event endpoints
+// Event HTML endpoints
 app.get('/event/michael/add', function (req, res) {
     res.render('add-event');
 });
@@ -64,4 +65,7 @@ app.get('/api/v1/event/michael/view-all', Event.getAll);
 app.put('/api/v1/event/michael/edit', Event.updateOne);
 app.delete('/api/v1/event/michael/delete', Event.deleteOne);
 
-//
+// 404 page
+app.get("*", function (req, res) {
+    res.render("404");
+});
