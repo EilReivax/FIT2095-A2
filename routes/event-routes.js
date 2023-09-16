@@ -51,20 +51,17 @@ module.exports = {
         let name = req.body.name;
         let capacity = req.body.capacity;
 
-        await Event.findOnedAndUpdate({
+        let event = await Event.updateOne({
             eventId: eventId
         }, {
             name: name,
             capacity: capacity
         });
+        res.json(event);
     },
     deleteOne: async function (req, res) {
-        await Event.findOneAndDelete({eventId: req.params.eventId});
-        
-        res.json({ 
-            acknowledged: true,
-            deleteCount: Event.categoryList.length()
-        });
+        let event = await Event.deleteOne({eventId: req.params.eventId});
+        res.json(event);
     },
     webCreateOne: async function (req, res) {        
         let categoryList = [];
@@ -115,6 +112,9 @@ module.exports = {
 
         res.render("view-events", {events: events});
     },
+    webGetOne: async function (req, res) {
+        
+    },
     webGetSoldout: async function (req, res) {        
         let events = await Event.find({availability: 0})
             .populate('categoryList')
@@ -123,7 +123,7 @@ module.exports = {
         res.render("view-events", {events: events});
     },
     webDeleteOne: async function (req, res) {
-        await Event.findOneAndDelete({eventId: req.params.eventId});
+        await Event.deleteOne({eventId: req.params.eventId});
         res.redirect("/event/michael/view-all");
     }
 }

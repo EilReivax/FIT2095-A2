@@ -41,6 +41,7 @@ app.get('/category/32528558/delete', function (req, res) {
 })
 app.post('/delete-event-category', Category.webDeleteOne);
 app.get('/category/32528558/view-all', Category.webGetAll);
+app.get('/event/32528558/view-details/:eventId', Event.webGetOne);
 app.get('/category/32528558/search-category', Category.webSearch);
 
 // Category API endpoints
@@ -56,7 +57,7 @@ app.get('/event/michael/add', function (req, res) {
 app.post('/event/michael/add', Event.webCreateOne);
 app.get('/event/michael/view-all', Event.webGetAll);
 app.get('/event/michael/view-soldout', Event.webGetSoldout);
-app.get('/category/michael/view-details/:id', Category.webGetOne);
+app.get('/category/michael/view-details/:categoryId', Category.webGetOne);
 app.get('/event/michael/delete', Event.webDeleteOne);
 
 // Event API endpoints
