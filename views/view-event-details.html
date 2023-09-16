@@ -46,9 +46,17 @@
         <p>
             <%= event.availability %>
         </p>
-        <h5>Category ID</h3>
+        <h5>Categories ID</h3>
+        <% let categories="" %>
+        <% for (let i = 0; i < event.categoryList.length; i++) { %>
+            <% if (i == event.categoryList.length - 1) { %>
+                <% categories += `${event.categoryList[i].categoryId}` %>
+            <% } else { %>
+                <% categories += `${event.categoryList[i].categoryId}, ` %>
+            <% } %>
+        <% } %>
         <p>
-            <%= event.categoryId %>
+            <%= categories %>
         </p>
     </div>
 </body>
