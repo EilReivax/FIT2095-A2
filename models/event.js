@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
+    eventId: {
+        type: String,
+        default: generateId()
+    },
     name: {
         type: String,
         required: true
@@ -20,7 +24,7 @@ const eventSchema = new mongoose.Schema({
         default: true
     },
     image: {
-        types: String
+        type: String
     },
     capacity: {
         type: Number,
@@ -40,11 +44,24 @@ const eventSchema = new mongoose.Schema({
     availability: {
         type: Number
     },
-    category_id: {
+    categoryList: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category'
-    },
-    categoryList: Array
+    }],
 });
+
+function getRandomLetter(){
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    randInt = getRandomNum(26);
+    return alphabet[randInt];
+}
+
+function generateId() {
+    let letter1 = getRandomLetter();
+    let letter2 = getRandomLetter();
+    let num = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
+    let id = `E${letter1}${letter2}-${num}`;
+    return id;
+}
 
 module.exports = mongoose.model('Event', eventSchema);
