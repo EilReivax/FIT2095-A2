@@ -12,7 +12,7 @@
                         <div class="col">
                             <div class="card shadow-sm">
                                 <div class="card-body">
-                                    <form action="/api/v1/event/michael/add-event" method="POST">
+                                    <form action="/event/michael/add" method="POST">
                                         <div class="mb-3">
                                             <label for="name" class="form-label">* Event Name</label>
                                             <input type="text" name="name" class="form-control" id="name" placeholder="Enter event name" required>
@@ -43,11 +43,11 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="availability" class="form-label">Tickets Available</label>
-                                            <input type="number" name="availability" class="form-control" id="availability" placeholder="Tickets Available (Optional)">
+                                            <input type="number" name="availability" class="form-control" id="availability" placeholder="Tickets Available">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="categoryId" class="form-label">* Category ID</label>
-                                            <input type="text" name="categoryId" class="form-control" id="categoryId" placeholder="Category ID" required>
+                                            <label for="categories" class="form-label">* Category ID</label>
+                                            <input type="text" name="categories" class="form-control" id="categories" placeholder="Categories ID" required>
                                         </div>
                                         <button class="btn btn-primary">Submit</button>
                                     </form>
