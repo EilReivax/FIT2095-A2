@@ -44,6 +44,10 @@ const eventSchema = new mongoose.Schema({
     availability: {
         type: Number
     },
+    categories: {
+        type: String,
+        required: true
+    },
     categoryList: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category'
