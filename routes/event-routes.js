@@ -37,7 +37,7 @@ module.exports = {
         });
 
         await newEvent.save();
-        res.json(newEvent.eventId);
+        res.json({eventId: newEvent.eventId});
     },
     getAll: async function (req, res) {
         let events = await Event.find()
@@ -47,7 +47,7 @@ module.exports = {
         res.json(events);
     },
     updateOne: async function (req, res) {
-        let eventId = req.params.eventId;
+        let eventId = req.body.eventId;
         let name = req.body.name;
         let capacity = req.body.capacity;
 
@@ -57,10 +57,17 @@ module.exports = {
             name: name,
             capacity: capacity
         });
-        res.json(event);
+        if (event.acknowledged) {
+            res.json({
+                status: "updated successfully"
+            });
+        }
+        res.json({
+            status: "failed to update"
+        });
     },
     deleteOne: async function (req, res) {
-        let event = await Event.deleteOne({eventId: req.params.eventId});
+        let event = await Event.deleteOne({eventId: req.body.eventId});
         res.json(event);
     },
     webCreateOne: async function (req, res) {        
