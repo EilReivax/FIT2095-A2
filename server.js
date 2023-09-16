@@ -2,11 +2,18 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 // const category = require('.routers/category');
-const event = require('.routes/event-routes');
+// const event = require('./routes/event-routes');
+const categories = require('./routes/category-routes');
 
 const app = express();
 
 app.listen(8080);
+
+app.use(express.static("node_modules/bootstrap/dist/css"));
+app.use(express.static("images"));
+
+app.engine("html", require("ejs").renderFile);
+app.set("view engine", "html");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -16,25 +23,29 @@ async function connect() {
 }
 connect().catch(err => console.log(err));
 
-// Add event endpoints
-app.get('/api/v1/event/michael/add-event', function (req, res) {
-    res.render('add-event');
-});
-app.post('/api/v1/event/michael/add-event', event.createOne);
+app.get('/', function (req, res) {
+    res.render("index");
+})
 
-// View all events endpoint
-app.get('/api/v1/event/michael/view-events', function (req, res) {
-    let json = event.getAll
-});
+// app.post('/event', event.createOne);
+// app.get('/event', event.getAll);
+// app.delete('/event', event.deleteOne);
+// app.put('/event', event.updateOne);
 
-// View soldout events endpoint
-app.get('/api/v1/event/michael/view-events-soldout', getAllSoldout);
+app.get('/api/v1/category/32528558/list', categories.getAll);
+app.post('/api/v1/category/32528558/add', categories.createOne);
+app.delete('/api/v1/category/32528558/delete', categories.deleteOne);
+app.put('/api/v1/category/32528558/edit', categories.updateOne);
 
-// View event details endpoint
-app.get('/api/v1/event/michael/view-event-details/:id', event.getOne);
+app.get('/category/32528558/add', function (req,res){
+    res.render("add-category");
+})
 
-// Delete event endpoint
-app.delete('/api/v1/event/michael/delete-event/', event.deleteOne);
+app.get('/category/32528558/delete', function(req,res){
+    res.render('delete-category');
+})
 
-// Update event endpoint
-app.put('/api/v1/event/michael/event', event.updateOne);
+app.post('/add-category-post', categories.webCreateOne);
+app.get('/category/32528558/view-all', categories.webGetAll);
+app.post('/delete-event-category', categories.webDeleteOne);
+app.get('/category/32528558/search-category', categories.webSearch);

@@ -1,28 +1,59 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
-    <head>
-        <link href="/bootstrap.min.css" rel="stylesheet"/>
-    </head>
-    <body>
-        <div class="album py-5">
-            <div class="container">
-                <h3 class="my-2">Delete Event Category</h3>
-                <div class="row row-cols-1 row-cols-sm-2">
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <div class="card-body">
-                                <form action="/delete-event-category" method="POST">
-                                    <div class="mb-3">
-                                        <label for="id" class="form-label">Category ID</label>
-                                        <input type="text" name="id" class="form-control" id="id" placeholder="Enter category ID"/>
-                                    </div>
-                                    <button class="btn btn-primary">Submit</button>
-                                </form>
+
+<head>
+    <link href="/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .header {
+            padding: 60px;
+            text-align: center;
+            background: #e8e8e3;
+            color: black;
+            font-size: 30px;
+        }
+
+        .center {
+            width: 50%;
+            margin: auto;
+            padding: 10px;
+        }
+
+        .form75{
+            width: 75%;
+            margin: auto;
+            padding: 10px;
+        }
+
+        h3, p{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1><b>Event Management App</b></h1>
+    </div>
+    <div class="center">
+        <h3 class="my-2">Delete Event Category</h3>
+        <p>Provide category ID & click delete</p>
+        <div class="form75">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <form action="/delete-event-category" method="POST">
+                            <div class="mb-3">
+                                <label for="categoryId" class="form-label">Category ID</label>
+                                <input type="text" name="categoryId" class="form-control" id="categoryId"
+                                    placeholder="Enter category ID" />
                             </div>
-                        </div>
+                            <button class="btn btn-primary">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
