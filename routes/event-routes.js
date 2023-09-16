@@ -5,6 +5,7 @@ const Event = require('../models/event');
 
 module.exports = {
     createOne: async function (req, res) {
+        let categoryList = [];
         let name = req.body.name;
         let description = req.body.description;
         let date = req.body.date;
@@ -13,10 +14,14 @@ module.exports = {
         let image = req.body.image;
         let capacity = req.body.capacity;
         let availability = req.body.availability;
-        let categoryList = req.body.categoryList.split(',');;
+        let categories = req.body.categories.split(',');
 
         if (!capacity) {
             capacity = 1000;
+        }
+
+        for (let i = 0; i < categories.length; i++) {
+            categoryList.push(Category.find({categoryId: categories[i]})._id);
         }
 
         let newEvent = new Event({
@@ -30,6 +35,7 @@ module.exports = {
             availability: availability,
             categoryList: categoryList
         });
+
         await newEvent.save();
         res.json(newEvent.eventId);
     },
@@ -61,6 +67,7 @@ module.exports = {
         });
     },
     webCreateOne: async function (req, res) {        
+        let categoryList = [];
         let name = req.body.name;
         let description = req.body.description;
         let date = req.body.date;
@@ -75,9 +82,9 @@ module.exports = {
             capacity = 1000;
         }
 
-        let categoryList = [];
         for (let i = 0; i < categories.length; i++) {
-            categoryList.push(Category.find({categoryId: categories[i]})._id);
+            let category = await Category.findOne({categoryId: categories[i]});
+            categoryList.push(category._id);
         }
 
         let newEvent = new Event({
@@ -91,6 +98,13 @@ module.exports = {
             availability: availability,
             categoryList: categoryList
         });
+
+        for (let i = 0; i < categoryList.length; i++) {
+            let category = await Category.findById(categoryList[i]);
+            category.eventList.push(newEvent._id);
+            await category.save();
+        }
+        
         await newEvent.save();
         res.redirect("/event/michael/view-all");
     },
