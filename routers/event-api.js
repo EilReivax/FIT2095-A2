@@ -24,7 +24,7 @@ module.exports = {
         }
 
         for (let i = 0; i < categoriesId.length; i++) {
-            let category = await Category.findOne({ categoryId: categoriesId[i]});
+            let category = await Category.findOne({ categoryId: categoriesId[i] });
             categoryList.push(category._id);
         }
 
@@ -71,12 +71,13 @@ module.exports = {
         let name = req.body.name;
         let capacity = req.body.capacity;
 
-        let updateStatus = await Event.updateOne({
-            eventId: eventId
-        }, {
-            name: name,
-            capacity: capacity
-        });
+        let updateStatus = await Event.updateOne(
+            { eventId: eventId },
+            {
+                name: name,
+                capacity: capacity
+            }
+        );
 
         await Operation.updateOne(
             { _id: OPERATION_ID },
