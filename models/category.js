@@ -24,8 +24,6 @@ const categorySchema = new mongoose.Schema({
     }]
 })
 
-module.exports = mongoose.model("Category", categorySchema);
-
 function generateID(){
     let letter1 = getRandomLetter();
     let letter2 = getRandomLetter();
@@ -43,3 +41,5 @@ function getRandomLetter(){
     randInt = getRandomNum(26);
     return alphabet[randInt];
 }
+
+module.exports = mongoose.model("Category", categorySchema);
