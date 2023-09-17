@@ -1,10 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const Event = require('./routers/event');
+const CategoryApi = require('./routers/category-api');
 const Category = require('./routers/category');
 const EventApi = require('./routers/event-api');
-const CategoryApi = require('./routers/category-api');
+const Event = require('./routers/event');
 const Stats = require('./controllers/stats');
 
 const PORT_NUMBER = 8080;
