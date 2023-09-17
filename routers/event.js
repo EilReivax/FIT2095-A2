@@ -19,6 +19,12 @@ module.exports = {
         let availability = req.body.availability;
         let categoriesId = req.body.categoriesId.split(',').map(categoryId => categoryId.trim());
 
+        if (isActive) {
+            isActive = true;
+        } else {
+            isActive = false;
+        }
+
         if (!capacity) {
             capacity = 1000;
         }
@@ -80,7 +86,7 @@ module.exports = {
         res.render("view-events", { events: events });
     },
     deleteOne: async function (req, res) {
-        let event = await Event.findOne({ eventId: req.body.eventId });
+        let event = await Event.findOne({ eventId: req.query.eventId });
 
         let updateStatus = await Category.updateMany(
             { eventList: { $in: [event._id] } },
