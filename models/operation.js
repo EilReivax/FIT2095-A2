@@ -20,17 +20,4 @@ const operationSchema = new mongoose.Schema({
         default: 0
     }
 });
-
-operationSchema.methods.create = function () {
-    this.createCount++;
-}
-
-operationSchema.methods.update = function () {
-    this.updateCount++;
-}
-
-operationSchema.methods.delete = function () {
-    this.deleteCount++;
-}
-
 module.exports = mongoose.model('Operation', operationSchema);
