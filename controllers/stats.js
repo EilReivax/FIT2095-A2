@@ -6,7 +6,7 @@ const OPERATION_ID = 'OPERATION_ID'
 
 module.exports = {
     getAll: async function (req, res) {
-        if (await Operation.findById(OPERATION_ID)) {
+        if (!await Operation.findById(OPERATION_ID)) {
             let operation = new Operation();
             await operation.save();
         }
