@@ -79,12 +79,14 @@ module.exports = {
             }
         );
 
+        let status = `${updateStatus.matchedCount} found. ${updateStatus.modifiedCount} modified.`
+
         await Operation.updateOne(
             { _id: OPERATION_ID },
             { $inc: { updateCount: updateStatus.modifiedCount } }
         );
 
-        res.json(updateStatus);
+        res.json({ status: status });
     },
     deleteOne: async function (req, res) {
         let event = await Event.findOne({ eventId: req.body.eventId });

@@ -39,7 +39,9 @@ module.exports = {
             { $inc: { updateCount: updateStatus.modifiedCount } }
         );
 
-        res.json(updateStatus)
+        let status = `${updateStatus.matchedCount} found. ${updateStatus.modifiedCount} modified.`
+
+        res.json({ status: status });
     },
     deleteOne: async function (req, res) {
         let category = await Category.findOne({ categoryId: req.body.categoryId });
