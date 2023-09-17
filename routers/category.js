@@ -1,11 +1,16 @@
 const Category = require('../models/category');
 const Event = require('../models/event');
+const Operation = require('../models/operation');
+
+let OPERATION_ID = 'OPERATION_ID';
 
 module.exports = {
     createOne: async function (req, res) {
         let categoryDetails = req.body;
         let newCategory = new Category(categoryDetails);
         await newCategory.save();
+        let operation = await Operation.findById(OPERATION_ID);
+        operation.create();
         res.redirect('/category/32528558/view-all');
     },
     getAll: async function (req, res) {
@@ -32,7 +37,14 @@ module.exports = {
         res.render('search-category', { records: categories });
     },
     deleteOne: async function (req, res) {
-        let obj = await Category.deleteOne({ categoryId: req.body.categoryId });
+        let category = await Category.findOne({ categoryId: req.body.categoryId });
+        Event.updateMany(
+            { categoryList: { $in: [category._id] } },
+            { $pull: { categoryList: category._id } }
+        )
+        await Category.deleteOne({ _id: category._id });
+        let operation = await Operation.findById(OPERATION_ID);
+        operation.delete();
         res.redirect('category/32528558/view-all');
     }
 }

@@ -1,5 +1,8 @@
 const Category = require('../models/category');
 const Event = require('../models/event');
+const Operation = require('../models/operation');
+
+let OPERATION_ID = 'OPERATION_ID';
 
 module.exports = {
     createOne: async function (req, res) {        
@@ -42,6 +45,8 @@ module.exports = {
         }
         
         await newEvent.save();
+        let operation = await Operation.findById(OPERATION_ID);
+        operation.create();
         res.redirect("/event/michael/view-all");
     },
     getAll: async function (req, res) {        
@@ -65,7 +70,14 @@ module.exports = {
         res.render("view-events", {events: events});
     },
     deleteOne: async function (req, res) {
-        await Event.deleteOne({eventId: req.params.eventId});
+        let event = await Event.findOne({eventId: req.body.eventId});
+        Category.updateMany(
+            { eventList: { $in: [event._id] } },
+            { $pull: { eventList: event._id } }
+        )
+        await Event.deleteOne({_id: event._id});
+        let operation = await Operation.findById(OPERATION_ID);
+        operation.delete();
         res.redirect("/event/michael/view-all");
     }
 }

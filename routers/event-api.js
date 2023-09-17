@@ -1,5 +1,8 @@
 const Category = require('../models/category');
 const Event = require('../models/event');
+const Operation = require('../models/operation');
+
+let OPERATION_ID = 'OPERATION_ID';
 
 module.exports = {
     createOne: async function (req, res) {
@@ -19,7 +22,8 @@ module.exports = {
         }
 
         for (let i = 0; i < categories.length; i++) {
-            categoryList.push(Category.find({categoryId: categories[i]})._id);
+            let category = await Category.findOne({categoryId: categories[i]});
+            categoryList.push(category._id);
         }
 
         let newEvent = new Event({
@@ -34,7 +38,15 @@ module.exports = {
             categoryList: categoryList
         });
 
+        for (let i = 0; i < categoryList.length; i++) {
+            let category = await Category.findById(categoryList[i]);
+            category.eventList.push(newEvent._id);
+            await category.save();
+        }
+
         await newEvent.save();
+        let operation = await Operation.findById(OPERATION_ID);
+        operation.create();
         res.json({eventId: newEvent.eventId});
     },
     getAll: async function (req, res) {
@@ -45,27 +57,38 @@ module.exports = {
         res.json(events);
     },
     updateOne: async function (req, res) {
+        let operation = await Operation.findById(OPERATION_ID);
         let eventId = req.body.eventId;
         let name = req.body.name;
         let capacity = req.body.capacity;
 
-        let event = await Event.updateOne({
+        await Event.updateOne({
             eventId: eventId
         }, {
             name: name,
             capacity: capacity
-        });
-        if (event.acknowledged) {
-            res.json({
-                status: "updated successfully"
-            });
-        }
-        res.json({
-            status: "failed to update"
+        }, (err) => {
+            if (err, result) {
+                res.json({
+                    status: err
+                });
+            } else {
+                operation.update();
+                res.json({
+                    status: result
+                });
+            }
         });
     },
     deleteOne: async function (req, res) {
-        let event = await Event.deleteOne({eventId: req.body.eventId});
-        res.json(event);
+        let event = await Event.findOne({eventId: req.body.eventId});
+        Category.updateMany(
+            { eventList: { $in: [event._id] } },
+            { $pull: { eventList: event._id } }
+        )
+        let deleteStatus = await Event.deleteOne({_id: event._id});
+        let operation = await Operation.findById(OPERATION_ID);
+        operation.delete();
+        res.json(deleteStatus);
     }
 }
