@@ -5,11 +5,12 @@ const Operation = require("../models/operation");
 const OPERATION_ID = 'OPERATION_ID'
 
 module.exports = {
-    createOperation: async function (req, res) {
-        let operation = new Operation();
-        await operation.save();
-    },
     getAll: async function (req, res) {
+        if (await Operation.findById(OPERATION_ID)) {
+            let operation = new Operation();
+            await operation.save();
+        }
+
         let operation = await Operation.findById(OPERATION_ID);
         let categoryCount = await Category.countDocuments();
         let eventCount = await Event.countDocuments();
